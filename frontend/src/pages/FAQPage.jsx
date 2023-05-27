@@ -72,8 +72,8 @@ const Faq = () => {
             <div className="mt-4">
               <p className="text-base text-gray-500">
                 If you're not satisfied with your purchase, we accept returns
-                within 30 days of delivery. To initiate a return, please email
-                us at support@myecommercestore.com with your order number and a
+                within 7 days of delivery. To initiate a return, please email us
+                at support@myecommercestore.com with your order number and a
                 brief explanation of why you're returning the item.
               </p>
             </div>

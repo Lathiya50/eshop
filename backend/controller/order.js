@@ -13,7 +13,6 @@ router.post(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const { cart, shippingAddress, user, totalPrice, paymentInfo } = req.body;
-
       //   group cart items by shopId
       const shopItemsMap = new Map();
 
@@ -27,7 +26,6 @@ router.post(
 
       // create an order for each shop
       const orders = [];
-
       for (const [shopId, items] of shopItemsMap) {
         const order = await Order.create({
           cart: items,
@@ -38,7 +36,6 @@ router.post(
         });
         orders.push(order);
       }
-
       res.status(201).json({
         success: true,
         orders,
@@ -111,7 +108,7 @@ router.put(
       if (req.body.status === "Delivered") {
         order.deliveredAt = Date.now();
         order.paymentInfo.status = "Succeeded";
-        const serviceCharge = order.totalPrice * .10;
+        const serviceCharge = order.totalPrice * 0.1;
         await updateSellerInfo(order.totalPrice - serviceCharge);
       }
 
@@ -133,7 +130,7 @@ router.put(
 
       async function updateSellerInfo(amount) {
         const seller = await Shop.findById(req.seller.id);
-        
+
         seller.availableBalance = amount;
 
         await seller.save();

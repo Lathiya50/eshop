@@ -27,7 +27,7 @@ const ShopLogin = () => {
       .then((res) => {
         toast.success("Login Success!");
         navigate("/dashboard");
-        window.location.reload(true); 
+        window.location.reload(true);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -133,6 +133,17 @@ const ShopLogin = () => {
                 Sign Up
               </Link>
             </div>
+            <Link
+              to="/"
+              style={{
+                justifyContent: "center",
+                display: "flex",
+                textAlign: "center",
+              }}
+              className="font-medium text-blue-600 hover:text-blue-500 "
+            >
+              Go to Home Page
+            </Link>
           </form>
         </div>
       </div>

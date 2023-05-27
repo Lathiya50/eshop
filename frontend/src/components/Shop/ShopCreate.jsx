@@ -10,14 +10,14 @@ import { RxAvatar } from "react-icons/rx";
 const ShopCreate = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [name,setName] = useState("");
-  const [phoneNumber,setPhoneNumber] = useState();
-  const [address,setAddress] = useState("");
-  const [zipCode,setZipCode] = useState();
-  const [avatar,setAvatar] = useState();
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [address, setAddress] = useState("");
+  const [zipCode, setZipCode] = useState();
+  const [avatar, setAvatar] = useState();
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-     
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = { headers: { "Content-Type": "multipart/form-data" } };
@@ -57,14 +57,13 @@ const ShopCreate = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-         Register as a seller
+          Register as a seller
         </h2>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-[35rem]">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
-
-          <div>
+            <div>
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -192,7 +191,7 @@ const ShopCreate = () => {
                 )}
               </div>
             </div>
-          
+
             <div>
               <label
                 htmlFor="avatar"
@@ -240,6 +239,17 @@ const ShopCreate = () => {
                 Sign in
               </Link>
             </div>
+            <Link
+              to="/"
+              style={{
+                justifyContent: "center",
+                display: "flex",
+                textAlign: "center",
+              }}
+              className="font-medium text-blue-600 hover:text-blue-500 "
+            >
+              Go to Home Page
+            </Link>
           </form>
         </div>
       </div>

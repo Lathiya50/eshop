@@ -54,7 +54,7 @@ const UserInbox = () => {
 
         setConversations(resonse.data.conversations);
       } catch (error) {
-        // console.log(error);
+        console.log(error);
       }
     };
     getConversation();

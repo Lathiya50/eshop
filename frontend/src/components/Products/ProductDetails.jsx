@@ -85,10 +85,9 @@ const ProductDetails = ({ data }) => {
       0
     );
 
-  const avg =  totalRatings / totalReviewsLength || 0;
+  const avg = totalRatings / totalReviewsLength || 0;
 
   const averageRating = avg.toFixed(2);
-
 
   const handleMessageSubmit = async () => {
     if (isAuthenticated) {
@@ -197,6 +196,7 @@ const ProductDetails = ({ data }) => {
                     )}
                   </div>
                 </div>
+
                 <div
                   className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
                   onClick={() => addToCartHandler(data._id)}

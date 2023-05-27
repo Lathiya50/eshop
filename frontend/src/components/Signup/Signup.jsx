@@ -175,6 +175,17 @@ const Singup = () => {
                 Sign In
               </Link>
             </div>
+            <Link
+              to="/"
+              style={{
+                justifyContent: "center",
+                display: "flex",
+                textAlign: "center",
+              }}
+              className="font-medium text-blue-600 hover:text-blue-500 "
+            >
+              Go to Home Page
+            </Link>
           </form>
         </div>
       </div>

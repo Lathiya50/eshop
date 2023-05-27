@@ -44,7 +44,7 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `https://eshop-tutorial-cefl.vercel.app/seller/activation/${activationToken}`;
+    const activationUrl = `${process.env.CLIENT_URL}/seller/activation/${activationToken}`;
 
     try {
       await sendMail({

@@ -65,8 +65,8 @@ const ProfileContent = ({ active }) => {
         withCredentials: true,
       })
       .then((response) => {
-         dispatch(loadUser());
-         toast.success("avatar updated successfully!");
+        dispatch(loadUser());
+        toast.success("avatar updated successfully!");
       })
       .catch((error) => {
         toast.error(error);
@@ -291,7 +291,8 @@ const AllRefundOrders = () => {
     dispatch(getAllOrdersOfUser(user._id));
   }, []);
 
-  const eligibleOrders = orders && orders.filter((item) => item.status === "Processing refund");
+  const eligibleOrders =
+    orders && orders.filter((item) => item.status === "Processing refund");
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
@@ -347,7 +348,7 @@ const AllRefundOrders = () => {
   const row = [];
 
   eligibleOrders &&
-   eligibleOrders.forEach((item) => {
+    eligibleOrders.forEach((item) => {
       row.push({
         id: item._id,
         itemsQty: item.cart.length,
@@ -638,7 +639,7 @@ const Address = () => {
                       className="w-[95%] border h-[40px] rounded-[5px]"
                     >
                       <option value="" className="block border pb-2">
-                        choose your city
+                        choose your State/City
                       </option>
                       {State &&
                         State.getStatesOfCountry(country).map((item) => (

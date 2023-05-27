@@ -57,6 +57,65 @@ router.get(
   })
 );
 
+// get  products from id
+router.get(
+  "/get-product/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const products = await Product.find({ _id: req.params.id });
+
+      res.status(201).json({
+        success: true,
+        products,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+// delete product of a shop
+router.put(
+  "/update-product/:id",
+  isSeller,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const {
+        name,
+        description,
+        category,
+        tags,
+        originalPrice,
+        discountPrice,
+        stock,
+      } = req.body;
+
+      const productId = req.params.id;
+      const product = await Product.findById(productId);
+      if (!product) {
+        return next(new ErrorHandler("Product not found with this id!", 500));
+      }
+
+      product.name = name;
+      product.description = description;
+      product.category = category;
+      product.tags = tags;
+      product.originalPrice = originalPrice;
+      product.discountPrice = discountPrice;
+      product.stock = stock;
+
+      await product.save();
+
+      res.status(201).json({
+        success: true,
+        message: "Product Update successfully!",
+        product,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
+    }
+  })
+);
+
 // delete product of a shop
 router.delete(
   "/delete-shop-product/:id",
