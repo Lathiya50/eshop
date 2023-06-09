@@ -53,6 +53,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
         message: `please check your email:- ${user.email} to activate your account!`,
       });
     } catch (error) {
+      console.log("mail error" + error.message);
       return next(new ErrorHandler(error.message, 500));
     }
   } catch (error) {
@@ -119,9 +120,7 @@ router.post(
       if (!user) {
         return next(new ErrorHandler("User doesn't exists!", 400));
       }
-
       const isPasswordValid = await user.comparePassword(password);
-
       if (!isPasswordValid) {
         return next(
           new ErrorHandler("Please provide the correct information", 400)
