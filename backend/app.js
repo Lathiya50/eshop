@@ -6,30 +6,43 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 
-app.use(
-  cors({
-    origin: "https://eshop-i1c6.onrender.com",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://eshop-i1c6.onrender.com",
+//     credentials: true,
+//   })
+// );
 
-// app.use(cors());
-// var whitelist = ["https://eshop-i1c6.onrender.com", "http://localhost:3000"];
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-// };
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  console.log("req", req.originalUrl, req.baseUrl);
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://eshop-i1c6.onrender.com"
+  );
 
-// app.use(cors(corsOptions));
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
+});
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "./uploads")));
-
 
 // app.use(function (request, response, next) {
 //   response.header("Access-Control-Allow-Origin", "*");
