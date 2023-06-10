@@ -5,27 +5,45 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-// app.use(cors());
-var whitelist = ["https://eshop-i1c6.onrender.com", "http://localhost:3000"];
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://eshop-i1c6.onrender.com",
+    credentials: true,
+  })
+);
+
+// app.use(cors());
+// var whitelist = ["https://eshop-i1c6.onrender.com", "http://localhost:3000"];
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
+
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "./uploads")));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://eshop-i1c6.onrender.com");
-  next();
-});
+
+// app.use(function (request, response, next) {
+//   response.header("Access-Control-Allow-Origin", "*");
+//   response.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://eshop-i1c6.onrender.com");
+//   next();
+// });
 
 app.use("/test", (req, res) => {
   res.send("Hello world!");
