@@ -16,10 +16,7 @@ const path = require("path");
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   console.log("req", req.originalUrl, req.baseUrl);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://eshop-i1c6.onrender.com"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "https://eshops.netlify.app");
 
   // Request methods you wish to allow
   res.setHeader(
