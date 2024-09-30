@@ -9,6 +9,7 @@ require("dotenv").config();
 app.use(
   cors({
     origin: [
+      "https://eshopping-sigma.vercel.app",
       "https://e-shop-backend-ae3h.onrender.com",
       "http://localhost:3000",
     ],
