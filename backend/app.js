@@ -5,10 +5,13 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-
+require("dotenv").config();
 app.use(
   cors({
-    origin: "https://e-shop-backend-ae3h.onrender.com",
+    origin: [
+      "https://e-shop-backend-ae3h.onrender.com",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
@@ -23,11 +26,11 @@ app.use("/test", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // config
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({
-    path: "config/.env",
-  });
-}
+// if (process.env.NODE_ENV !== "PRODUCTION") {
+//   require("dotenv").config({
+//     path: "config/.env",
+//   });
+// }
 
 // import routes
 const user = require("./controller/user");
